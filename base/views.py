@@ -1,3 +1,4 @@
+import email
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib import messages
@@ -5,12 +6,16 @@ from base.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from base.forms import MyCreateUserForm
+from django.core.mail import send_mail
 
 
 
 # Create your views here.
 @login_required(login_url='loginPage')
 def home(request):
+   if request.method == 'POST':
+     email = request.POST['email']
+     
    return render(request, 'home.html')
   
   
@@ -47,7 +52,6 @@ def registerPage(request):
     form = MyCreateUserForm()
     context = {'form':form}
     if request.method == 'POST':
-        
         if User.objects.filter(username=request.POST['username']).exists():
           messages.info(request, 'Username is taken')
           return redirect('registerPage')
@@ -64,6 +68,12 @@ def registerPage(request):
                user.username = user.username.lower()
                user.email = user.email.lower()
                user.save()
+               send_mail(
+                       f'Hello, {user.username.upper()}', # subject
+                       'You are very welcome to ower insta clone app', # body
+                       'bazub702@gmail.com', # from email
+                       [user.email], # to email
+                      )
                login(request, user)
                return redirect('home')
            else:
