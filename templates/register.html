@@ -13,7 +13,7 @@
     <div class="wrapper fadeInDown">
       <div id="formContent">
         <!-- Tabs Titles -->
-        <h2 class="active">Log In</h2>
+        <h2 class="active">Sign UP</h2>
 
         <!-- Icon -->
         <div class="fadeIn first">
@@ -27,27 +27,12 @@
 
         <!-- Login Form -->
         <form action="" method="POST">
-          {% csrf_token %}
-          <input
-            type="email"
-            id="login"
-            class="fadeIn second"
-            name="email"
-            placeholder="Email"
-            required
-          />
-          <input
-            type="password"
-            id="password"
-            class="fadeIn third"
-            name="password"
-            placeholder="password"
-            required
-          />
+          {% csrf_token %} {{form.username}} {{form.email}} {{form.password1}}
+          {{form.password2}}
           <input
             type="submit"
             class="fadeIn fourth"
-            value="Log In"
+            value="Sign Up"
             style="margin-top: 20px"
           />
         </form>
@@ -60,9 +45,9 @@
         </div>
         <div id="formFooter">
           <p>
-            Create Account?
-            <a class="underlineHover" href="{% url 'registerPage' %}"
-              >Register now</a
+            Have An Account?
+            <a class="underlineHover" href="{% url 'loginPage' %}"
+              >Log in now</a
             >
           </p>
         </div>

@@ -2,18 +2,23 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib import messages
 from base.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from base.forms import MyCreateUserForm
+
 
 
 # Create your views here.
-
+@login_required(login_url='loginPage')
 def home(request):
    return render(request, 'home.html')
   
   
 def loginPage(request):
+   if request.user.is_authenticated:
+     return redirect('home')
    if request.method == 'POST':
-     email = request.POST['email']
+     email = request.POST['email'].lower()
      password = request.POST['password']
      print(email)
      print(password)
@@ -35,3 +40,21 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('loginPage')
+   
+def registerPage(request):
+    if request.user.is_authenticated:
+       return redirect('home')
+    form = MyCreateUserForm()
+    context = {'form':form}
+    if request.method == 'POST':
+        form = MyCreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.email = user.email.lower()
+            user.save()
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'An error ocurred during registration.')
+    return render(request, 'register.html', context)
