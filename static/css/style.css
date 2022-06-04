@@ -83,14 +83,15 @@ body {
 }
 
 .activity-container {
-  width: 350px;
+  width: 250px;
   height: auto;
-  max-height: 300px;
+  max-height: 200px;
   position: absolute;
   top: 200%;
   right: 0;
   background: #fff;
-  border: 1px solid #999;
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 10px;
 }
 
 .activity-card {
@@ -393,6 +394,7 @@ body {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 20px;
+  text-transform: capitalize;
 }
 
 .info-container p {
@@ -411,42 +413,125 @@ body {
 .suggestion-container {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+  /* gap: 20px; */
 }
 
 .user-card {
-  min-width: 150px;
+  /* min-width: 150px; */
   background: #fff;
   padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
   border: 1px solid rgb(202, 201, 201);
   border-radius: 10px;
 }
 
 .user-card .user-dp {
-  width: 80px;
-  height: 80px;
-  display: block;
-  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 .user-card .username {
   text-align: center;
   font-size: 1rem;
   font-weight: 600;
-  margin: 20px 0;
   text-transform: capitalize;
 }
 
 .follow-btn {
   display: block;
-  margin: auto;
-  width: 80%;
-  height: 35px;
+  padding: 10px;
   background: #59afff;
   color: #fff;
   font-size: 1rem;
   text-transform: capitalize;
   border: 1px solid #3086d6;
   cursor: pointer;
+  border-radius: 10px;
+}
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+}
+
+.modal-cont {
+  position: relative;
+  background-color: #fff;
+  width: 65%;
+  border-radius: 20px;
+  padding: 20px;
+}
+.bg-active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-close {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.modal-title {
+  font-size: 1.4rem;
+  margin: 20px 10px;
+}
+.modal-img {
+  width: 80%;
+  border-radius: 20px;
+  margin: 5px 80px;
+}
+
+.time-author {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #7c7676;
+  font-size: 14px;
+}
+
+.modal-close2 {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.model-cont {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0 100px;
+}
+
+.model-cont-copy {
+  max-width: 60%;
+
+  margin: 20px auto;
+  /* margin-top: 20px; */
+}
+
+.model-cont-copy .copy_input {
+  padding: 10px;
+  max-width: 200px;
+  border-radius: 15px;
 }

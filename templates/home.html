@@ -63,12 +63,13 @@
             </div>
           </div>
         </div>
-        <a href="#" class="nav-links"
-          ><img
+        <p class="nav-links open"></p>
+          <img
             src="{% static 'img/icon/add-nofill.png' %}"
             class="nav-icon"
             alt=""
-        /></a>
+          />
+        </p>
         <a href="#" class="nav-links"
           ><img
             src="{{request.user.image.url}}"
@@ -145,7 +146,7 @@
                 placeholder="Add a comment"
               />
               <button class="add-comment-btn">
-                <img src="img/icon/comment-nofill.png" alt="" />
+                <img src="{% static 'img/icon/comment-nofill.png' %}" alt="" />
               </button>
             </div>
 
@@ -159,7 +160,7 @@
         <div class="user-info">
           <img src="{{request.user.image.url}}" class="user-dp" alt="" />
           <div class="info-container">
-            <h1 class="name">{{request.user.username}}</h1>
+            <h1 class="name">@{{request.user.username}}</h1>
             <p>{{request.user.bio}}</p>
           </div>
         </div>
@@ -183,7 +184,34 @@
         </div>
       </div>
     </section>
+    <!-- Modal -->
+    <div class="modal-bg">
+      <div class="modal-cont">
+        <h5 class="modal-title">{{image.name}}</h5>
+        <div class="model-cont">
+          
+        </div>
 
+        <div class="modal-footer">
+          <button
+            class="modal-close2"
+            style="
+              padding: 10px;
+              background-color: gray;
+              border-radius: 10px;
+              outline: none;
+              border: none;
+              cursor: pointer;
+              color: #e4e2e2;
+            "
+          >
+            Close
+          </button>
+        </div>
+
+        <span class="modal-close">&times;</span>
+      </div>
+    </div>
     <script src="{% static 'js/post.js' %}"></script>
   </body>
 </html>

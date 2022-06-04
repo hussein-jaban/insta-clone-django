@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from cloudinary.models import CloudinaryField
+import uuid
+
 
 # Create your models here.
 class User(AbstractUser):
@@ -10,3 +12,5 @@ class User(AbstractUser):
    image = CloudinaryField('image', null=True, blank=True, default='image/upload/v1654285390/hz7a08c74kynhnx24lwd.png')
    USERNAME_FIELD = 'email'
    REQUIRED_FIELDS = ['username']
+   
+   
