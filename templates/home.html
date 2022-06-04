@@ -11,5 +11,8 @@
   </head>
   <body>
     <h1>Home page baby</h1>
+    {% if messages %} {% for message in messages %}
+    <p class="messages" style="color: #555">{{ message }}</p>
+    {% endfor %} {% endif %}
   </body>
 </html>

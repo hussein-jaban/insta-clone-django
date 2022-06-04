@@ -26,20 +26,21 @@
         </div>
 
         <!-- Login Form -->
-        <form>
+        <form action="" method="POST">
+          {% csrf_token %}
           <input
             type="email"
             id="login"
             class="fadeIn second"
-            name="login"
+            name="email"
             placeholder="Email"
             required
           />
           <input
-            type="text"
+            type="password"
             id="password"
             class="fadeIn third"
-            name="login"
+            name="password"
             placeholder="password"
             required
           />
@@ -52,6 +53,11 @@
         </form>
 
         <!-- Remind Passowrd -->
+        <div id="formFooter2" style="margin-top: -27px">
+          {% if messages %} {% for message in messages %}
+          <p class="messages" style="color: #e75050">{{ message }}</p>
+          {% endfor %} {% endif %}
+        </div>
         <div id="formFooter">
           <p>
             Create Account? <a class="underlineHover" href="#">Register now</a>
