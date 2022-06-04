@@ -47,14 +47,26 @@ def registerPage(request):
     form = MyCreateUserForm()
     context = {'form':form}
     if request.method == 'POST':
-        form = MyCreateUserForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
-            user.email = user.email.lower()
-            user.save()
-            login(request, user)
-            return redirect('home')
+        
+        if User.objects.filter(username=request.POST['username']).exists():
+          messages.info(request, 'Username is taken')
+          return redirect('registerPage')
+        elif User.objects.filter(email=request.POST['email']).exists():
+          messages.info(request, 'Email is taken')
+          return redirect('registerPage')
+        elif request.POST['password1'] != request.POST['password2']:
+          messages.info(request, 'Password and Confirm Paswword dont match')
+          return redirect('registerPage')
         else:
-            messages.error(request, 'An error ocurred during registration.')
+           form = MyCreateUserForm(request.POST)
+           if form.is_valid():
+               user = form.save(commit=False)
+               user.username = user.username.lower()
+               user.email = user.email.lower()
+               user.save()
+               login(request, user)
+               return redirect('home')
+           else:
+             messages.error(request, 'An error ocurred during registration.')
+          
     return render(request, 'register.html', context)
