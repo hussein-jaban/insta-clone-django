@@ -6,26 +6,102 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'main.css' %}" />
-    <title>Document</title>
+    <title>Socialize : Home Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
-    <h1>Home page baby</h1>
-    {% if messages %} {% for message in messages %}
-    <p class="messages" style="color: #555">{{ message }}</p>
-    {% endfor %} {% endif %} {% if request.user.is_authenticated %}
-    <div>
-      <p>{{request.user.username}}</p>
-      <p>{{request.user.email}}</p>
-      <img src="{{request.user.image.url}}" alt="" />
-    </div>
-    <a href="{% url 'logout' %}">
-      <p>Logout</p>
-    </a>
-    {% else %}
-    <a href="{% url 'loginPage' %}">
-      <p>Login</p>
-    </a>
-    {% endif %}
+    <!-- navbar -->
+    <nav class="navbar">
+      <img src="{% static 'img/logo.png' %}" class="logo" alt="" />
+      <form class="search-box">
+        <input
+          type="text"
+          placeholder="search"
+          name="search-query"
+          id="search-input"
+        />
+        <button class="search-btn" type="submit">
+          <img
+            src="{% static 'img/icon/search.png' %}"
+            class="search-icon"
+            alt=""
+          />
+        </button>
+      </form>
+      <div class="nav-links">
+        <a href="#" class="nav-links"
+          ><img
+            src="{% static 'img/icon/home-fill.png' %}"
+            class="nav-icon"
+            alt=""
+        /></a>
+        <div class="activity-log">
+          <img
+            src="{% static 'img/icon/heart-nofill.png' %}"
+            class="nav-icon"
+            alt=""
+          />
+          <div class="activity-container hide">
+            <div class="activity-card">
+              <img src="{% static 'img/user1.png' %}" class="user-img" alt="" />
+              <p class="activity"><b>@siri</b> liked your post</p>
+              <img
+                src="{% static 'img/posts/post1.png' %}"
+                class="activity-post"
+                alt=""
+              />
+            </div>
+            <div class="activity-card">
+              <img src="{% static 'img/user2.png' %}" class="user-img" alt="" />
+              <p class="activity"><b>@siri</b> liked your post</p>
+              <img
+                src="{% static 'img/posts/post1.png' %}"
+                class="activity-post"
+                alt=""
+              />
+            </div>
+            <div class="activity-card">
+              <img src="{% static 'img/user1.png' %}" class="user-img" alt="" />
+              <p class="activity"><b>@siri</b> liked your post</p>
+              <img
+                src="{% static 'img/posts/post1.png' %}"
+                class="activity-post"
+                alt=""
+              />
+            </div>
+            <div class="activity-card">
+              <img src="{% static 'img/user3.png' %}" class="user-img" alt="" />
+              <p class="activity"><b>@siri</b> liked your post</p>
+              <img
+                src="{% static 'img/posts/post1.png' %}"
+                class="activity-post"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <a href="#" class="nav-links"
+          ><img
+            src="{% static 'img/icon/add-nofill.png' %}"
+            class="nav-icon"
+            alt=""
+        /></a>
+        <a href="#" class="nav-links"
+          ><img
+            src="{% static 'img/profile-img.png' %}"
+            class="nav-icon user-profile"
+            alt=""
+        /></a>
+      </div>
+    </nav>
+
+    <script src="{% static 'js/post.js' %}"></script>
   </body>
 </html>
