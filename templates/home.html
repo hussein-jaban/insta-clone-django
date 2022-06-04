@@ -13,6 +13,19 @@
     <h1>Home page baby</h1>
     {% if messages %} {% for message in messages %}
     <p class="messages" style="color: #555">{{ message }}</p>
-    {% endfor %} {% endif %}
+    {% endfor %} {% endif %} {% if request.user.is_authenticated %}
+    <div>
+      <p>{{request.user.username}}</p>
+      <p>{{request.user.email}}</p>
+      <img src="{{request.user.image.url}}" alt="" />
+    </div>
+    <a href="{% url 'logout' %}">
+      <p>Logout</p>
+    </a>
+    {% else %}
+    <a href="{% url 'loginPage' %}">
+      <p>Login</p>
+    </a>
+    {% endif %}
   </body>
 </html>

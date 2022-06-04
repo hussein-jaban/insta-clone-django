@@ -30,3 +30,8 @@ def loginPage(request):
      else:
          messages.error(request, 'Email and password correct.')
    return render(request, 'login.html')
+  
+  
+def logoutUser(request):
+    logout(request)
+    return redirect('loginPage')
