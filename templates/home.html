@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Socialize : Home Page</title>
+    <title>Insta-clone : Home Page</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -44,46 +44,22 @@
         /></a>
         <div class="activity-log">
           <img
-            src="{% static 'img/icon/heart-nofill.png' %}"
+            src="{% static 'img/icon/icons-settings.png' %}"
             class="nav-icon"
             alt=""
           />
           <div class="activity-container hide">
             <div class="activity-card">
-              <img src="{% static 'img/user1.png' %}" class="user-img" alt="" />
-              <p class="activity"><b>@siri</b> liked your post</p>
-              <img
-                src="{% static 'img/posts/post1.png' %}"
-                class="activity-post"
-                alt=""
-              />
+              <p class="activity"><b>Profile</b></p>
             </div>
             <div class="activity-card">
-              <img src="{% static 'img/user2.png' %}" class="user-img" alt="" />
-              <p class="activity"><b>@siri</b> liked your post</p>
-              <img
-                src="{% static 'img/posts/post1.png' %}"
-                class="activity-post"
-                alt=""
-              />
+              <p class="activity"><b>Settings</b></p>
             </div>
+            <hr />
             <div class="activity-card">
-              <img src="{% static 'img/user1.png' %}" class="user-img" alt="" />
-              <p class="activity"><b>@siri</b> liked your post</p>
-              <img
-                src="{% static 'img/posts/post1.png' %}"
-                class="activity-post"
-                alt=""
-              />
-            </div>
-            <div class="activity-card">
-              <img src="{% static 'img/user3.png' %}" class="user-img" alt="" />
-              <p class="activity"><b>@siri</b> liked your post</p>
-              <img
-                src="{% static 'img/posts/post1.png' %}"
-                class="activity-post"
-                alt=""
-              />
+              <a href="{% url 'logout' %}"
+                ><p class="activity"><b>Logout</b></p></a
+              >
             </div>
           </div>
         </div>
@@ -95,12 +71,118 @@
         /></a>
         <a href="#" class="nav-links"
           ><img
-            src="{% static 'img/profile-img.png' %}"
+            src="{{request.user.image.url}}"
             class="nav-icon user-profile"
             alt=""
         /></a>
       </div>
     </nav>
+
+    <!-- main section -->
+    <section class="main">
+      <!-- post section -->
+      <div class="post-container">
+        <div class="post">
+          <div class="post-header">
+            <img src="img/user2.png" class="user-icon" alt="" />
+            <p class="username">@modernweb</p>
+          </div>
+          <div class="post-feed">
+            <div class="post-overlays">
+              <img src="img/icon/red-heart.png" class="like-icon" alt="" />
+              <div class="share-window">
+                <h1 class="title">share the post with others</h1>
+                <div class="share-link-container">
+                  <input
+                    type="text"
+                    id="share-link"
+                    value="https://www.socialize.com/post/234234234234"
+                    disabled
+                  />
+                  <button class="copy-btn">copy</button>
+                </div>
+              </div>
+            </div>
+            <div class="post-img-container">
+              <img src="img/posts/post1.png" alt="" />
+              <img src="img/posts/post2.png" alt="" />
+              <img src="img/posts/post3.png" alt="" />
+              <img src="img/posts/post4.png" alt="" />
+              <img src="img/posts/post5.png" alt="" />
+            </div>
+          </div>
+          <div class="post-detail">
+            <div class="detail-intracables">
+              <img
+                src="{% static 'img/icon/heart-nofill.png' %}"
+                class="like-btn"
+                alt=""
+              />
+              <img
+                src="{% static 'img/icon/send-nofill.png' %}"
+                class="send-btn"
+                alt=""
+              />
+              <img
+                src="{% static 'img/icon/comment-nofill.png' %}"
+                class="comment-btn"
+                alt=""
+              />
+            </div>
+            <span class="likes">2.7k likes</span>
+            <p class="username">@modernweb</p>
+            <p class="post-des">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+              ipsa incidunt obcaecati esse illo voluptates libero debitis nisi.
+              Id tempora vel illum vitae temporibus commodi non cupiditate atque
+              voluptas. Ipsam.
+            </p>
+
+            <div class="comment-box">
+              <input
+                type="text"
+                id="comment-input"
+                placeholder="Add a comment"
+              />
+              <button class="add-comment-btn">
+                <img src="img/icon/comment-nofill.png" alt="" />
+              </button>
+            </div>
+
+            <span class="comment-count">300 comments</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- right section -->
+      <div class="user-about-section">
+        <div class="user-info">
+          <img src="{{request.user.image.url}}" class="user-dp" alt="" />
+          <div class="info-container">
+            <h1 class="name">{{request.user.username}}</h1>
+            <p>{{request.user.bio}}</p>
+          </div>
+        </div>
+        <h1 class="suggestion-heading">suggestions</h1>
+        <div class="suggestion-container">
+          <div class="user-card">
+            <img src="img/user1.png" class="user-dp" alt="" />
+            <p class="username">@john</p>
+            <button class="follow-btn">follow</button>
+          </div>
+          <div class="user-card">
+            <img src="img/user2.png" class="user-dp" alt="" />
+            <p class="username">@john</p>
+            <button class="follow-btn">follow</button>
+          </div>
+          <div class="user-card">
+            <img src="img/user3.png" class="user-dp" alt="" />
+            <p class="username">@john</p>
+            <button class="follow-btn">follow</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <script src="{% static 'js/post.js' %}"></script>
   </body>

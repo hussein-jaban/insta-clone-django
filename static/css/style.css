@@ -28,6 +28,7 @@ body {
 
 .logo {
   height: 30px;
+  object-fit: cover;
 }
 
 .search-box {
@@ -127,4 +128,325 @@ body {
   width: 50px;
   height: 50px;
   object-fit: cover;
+}
+
+/* main section */
+
+.main {
+  width: 100%;
+  position: relative;
+  margin-top: 100px;
+  display: flex;
+  padding: 0 10vw 100px;
+  gap: 50px;
+}
+
+/* post section */
+
+.post-container {
+  width: 60%;
+}
+
+.post {
+  width: 100%;
+  border: 1px solid rgb(211, 211, 211);
+  background: #fff;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  padding: 1.2rem;
+  gap: 10px;
+}
+
+.post-header .user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.post-header .username {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.post-feed {
+  width: 100%;
+  height: 500px;
+  position: relative;
+}
+
+.post-img-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.post-img-container img {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.post-detail {
+  padding: 1.2rem;
+}
+
+.detail-intracables {
+  display: flex;
+  gap: 10px;
+}
+
+.detail-intracables img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.likes {
+  color: #a0a0a0;
+  display: flex;
+  margin: 10px 0;
+}
+
+.post .username {
+  font-weight: 600;
+}
+
+.post-des {
+  margin: 20px 0;
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+  opacity: 0.7;
+}
+
+.comment-box {
+  width: 100%;
+  height: 42px;
+  display: flex;
+  border: 1px solid #999;
+}
+
+#comment-input {
+  width: 100%;
+  height: 40px;
+  background: #fafafa;
+  border: none;
+  padding: 10px;
+  line-height: 40px;
+  z-index: 2;
+  font-size: 1rem;
+}
+
+#comment-input::placeholder {
+  color: #bbb;
+}
+
+#comment-input:focus {
+  outline: 1px solid #2f2f2f;
+}
+
+.add-comment-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: #fff;
+}
+
+.add-comment-btn img {
+  width: 30px;
+  height: 30px;
+}
+
+.comment-count {
+  font-weight: 600;
+  color: #a0a0a0;
+  font-size: 0.8rem;
+  display: flex;
+  margin-top: 10px;
+  opacity: 0.7;
+}
+
+.post-overlays {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.like-icon {
+  width: 200px;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.like-icon.show {
+  opacity: 1;
+  animation: popup 2s forwards 1;
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(0);
+  }
+  20% {
+    transform: scale(1.1);
+  }
+  80% {
+    transform: scale(0.9);
+  }
+  90% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.share-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  width: 70%;
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.share-window.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.share-window .title {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+
+.share-link-container {
+  width: 100%;
+  display: flex;
+  border: 1px solid #999;
+}
+
+#share-link {
+  height: 40px;
+  padding: 10px;
+  background: #fafafa;
+  border: none;
+  color: #999;
+  width: 100%;
+}
+
+.copy-btn {
+  background: #80c2ff88;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #80c2ff;
+  text-transform: capitalize;
+  width: 100px;
+}
+
+/* right section */
+
+.user-about-section {
+  width: 40%;
+  height: 100%;
+  /* position: relative; */
+  position: sticky;
+  top: 4rem;
+}
+
+.user-info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-dp {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.info-container p {
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  opacity: 0.8;
+}
+
+.suggestion-heading {
+  font-weight: 400;
+  font-size: 1.2rem;
+  margin: 30px 0;
+  text-transform: capitalize;
+}
+
+.suggestion-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.user-card {
+  min-width: 150px;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid rgb(202, 201, 201);
+  border-radius: 10px;
+}
+
+.user-card .user-dp {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: auto;
+}
+
+.user-card .username {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 20px 0;
+  text-transform: capitalize;
+}
+
+.follow-btn {
+  display: block;
+  margin: auto;
+  width: 80%;
+  height: 35px;
+  background: #59afff;
+  color: #fff;
+  font-size: 1rem;
+  text-transform: capitalize;
+  border: 1px solid #3086d6;
+  cursor: pointer;
 }
