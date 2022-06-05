@@ -14,3 +14,17 @@ class User(AbstractUser):
    REQUIRED_FIELDS = ['username']
    
    
+class Post(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    user = models.CharField(max_length=100)
+    image = CloudinaryField('image')
+    caption = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    likes = models.IntegerField(default=0)
+
+    class Meta:
+      ordering = ['-created']
+    def __str__(self):
+        return self.user
+   
+   
