@@ -99,7 +99,13 @@
       <div class="feed">
         <div class="post-header">
           <img src="{{post.user.image.url}}" class="user-icon" alt="" />
-          <p class="username">@{{post.user.username}}</p>
+
+          <a
+            href="{% url 'profile' post.user.username %}"
+            class="username"
+            style="text-decoration: none; color: black"
+            >@{{post.user.username}}</a
+          >
         </div>
         <div class="post-detail">
           <div class="detail-intracables">
