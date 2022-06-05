@@ -122,3 +122,7 @@ def uploadPic(request):
         new_post.save()
         return redirect('home')
     return HttpResponse('upload')
+  
+@login_required(login_url='loginPage')
+def post(request):
+    return render(request, 'post.html')

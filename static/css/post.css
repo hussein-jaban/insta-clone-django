@@ -1,0 +1,70 @@
+.post {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 75vh;
+  display: flex;
+}
+
+.post-feed {
+  width: 50%;
+  height: 100%;
+}
+
+.post-detail {
+  padding-top: 0;
+}
+
+.feed {
+  position: relative;
+  padding-bottom: 40px;
+  overflow-y: scroll;
+}
+
+.comment-box {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  padding: 10px;
+  height: auto;
+  border: none;
+  border-top: 1px solid #999;
+  background: #fff;
+  z-index: 2;
+}
+
+#comment-input {
+  border: 1px solid #999;
+}
+
+.comments-container {
+  width: calc(100% + 30px);
+  background: #fafafa;
+  margin-left: -12px;
+  padding: 20px;
+}
+
+.comment-card {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.comment-card .user-dp {
+  margin-top: 5px;
+  height: 30px;
+  width: 30px;
+}
+
+.comment-card .username {
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+
+.comment {
+  font-size: 0.8rem;
+}
