@@ -173,6 +173,6 @@ def likePost(request, pk):
 def profile(request, pk):
     user = User.objects.get(username=pk)
     posts = Post.objects.filter(user__username=pk)
-
-    context = {'user': user, 'posts': posts}
+    post_len = len(posts)
+    context = {'user': user, 'posts': posts, 'post_len':post_len}
     return render(request, 'profile.html', context)

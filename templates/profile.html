@@ -105,7 +105,7 @@
             margin-top: 10px;
           "
         >
-          <span><b>4</b> posts</span>
+          <span><b>{{post_len}}</b> posts</span>
           <span style="margin-left: 13px"><b>3</b> followers</span>
           <span style="margin-left: 13px"><b>6</b> following</span>
         </div>
@@ -118,8 +118,14 @@
 
       <div class="btn-container">
         {% if request.user == user %}
-        <button class="btn edit-btn">edit page</button>
-        <button class="btn logout-btn">logout</button>
+        <a href="{% url 'accountSettings' %}"
+          ><button class="btn edit-btn" style="padding: 10px">
+            edit page
+          </button></a
+        >
+        <a href="{% url 'logout' %}">
+          <button class="btn logout-btn" style="padding: 10px">logout</button>
+        </a>
         {% endif %}
       </div>
     </div>

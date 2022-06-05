@@ -100,7 +100,9 @@
           <button type="submit" class="btn btn-outline-primary">
             Save changes</button
           >&nbsp;
-          <a href="/" class="btn btn-secondary">Cancel</a>
+          <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary"
+            >Cancel</a
+          >
         </div>
       </div>
     </form>
