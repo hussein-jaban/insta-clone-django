@@ -128,29 +128,18 @@
                 class="send-btn"
                 alt=""
               />
-              <img
-                src="{% static 'img/icon/comment-nofill.png' %}"
-                class="comment-btn"
-                alt=""
-              />
+              <a href="{% url 'post' post.id %}"
+                ><img
+                  src="{% static 'img/icon/comment-nofill.png' %}"
+                  class="comment-btn"
+                  alt=""
+              /></a>
             </div>
             <span class="likes">{{post.likes}} likes</span>
             <p class="username" style="font-weight: 100; color: #8a8a8a">
               @{{post.user.username}}
             </p>
             <p class="post-des">{{post.caption}}</p>
-
-            <div class="comment-box">
-              <input
-                type="text"
-                id="comment-input"
-                placeholder="Add a comment"
-              />
-              <button class="add-comment-btn">
-                <img src="{% static 'img/icon/comment-nofill.png' %}" alt="" />
-              </button>
-            </div>
-
             <span class="comment-count">300 comments</span>
           </div>
         </div>

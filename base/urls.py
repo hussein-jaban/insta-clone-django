@@ -8,6 +8,6 @@ urlpatterns = [
     path('logout/', views.logoutUser, name='logout'),
     path('accountSettings/', views.accountSettings, name='accountSettings'),
     path('uploadPic/', views.uploadPic, name='uploadPic'),
-    path('post/', views.post, name='post'),
+    path('post/<pk>/', views.post, name='post'),
     
 ]

@@ -124,5 +124,8 @@ def uploadPic(request):
     return HttpResponse('upload')
   
 @login_required(login_url='loginPage')
-def post(request):
-    return render(request, 'post.html')
+def post(request, pk):
+    print(pk)
+    post = Post.objects.get(id=pk)
+    context = {'post':post}
+    return render(request, 'post.html', context)
