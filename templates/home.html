@@ -21,11 +21,12 @@
     <!-- navbar -->
     <nav class="navbar">
       <img src="{% static 'img/logo.png' %}" class="logo" alt="" />
-      <form class="search-box">
+      <form class="search-box" action="{% url 'searchResults' %}" method="POST">
+        {% csrf_token %}
         <input
           type="text"
-          placeholder="search"
-          name="search-query"
+          placeholder="Search Users"
+          name="q"
           id="search-input"
         />
         <button class="search-btn" type="submit">
@@ -51,10 +52,16 @@
           />
           <div class="activity-container hide">
             <div class="activity-card">
-              <p class="activity"><b>Profile</b></p>
+              <a
+                href="{% url 'profile' request.user.username %}"
+                style="text-decoration: none; color: black"
+                ><p class="activity"><b>Profile</b></p></a
+              >
             </div>
             <div class="activity-card">
-              <a href="{% url 'accountSettings' %}"
+              <a
+                href="{% url 'accountSettings' %}"
+                style="text-decoration: none; color: black"
                 ><p class="activity"><b>Settings</b></p></a
               >
             </div>
@@ -73,7 +80,7 @@
             alt=""
           />
         </p>
-        <a href="#" class="nav-links"
+        <a href="{% url 'profile' request.user.username %}" class="nav-links"
           ><img
             src="{{request.user.image.url}}"
             class="nav-icon user-profile"
@@ -89,25 +96,23 @@
         {% for post in posts %}
         <div class="post">
           <div class="post-header">
-            <img src="{{post.user.image.url}}" class="user-icon" alt="" />
-            <p class="username">@{{post.user.username}}</p>
+            <a
+              href="{% url 'profile' post.user.username %}"
+              style="
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                text-decoration: none;
+                color: black;
+              "
+            >
+              <img src="{{post.user.image.url}}" class="user-icon" alt="" />
+              <p class="username" style="margin-left: 10px">
+                @{{post.user.username}}
+              </p>
+            </a>
           </div>
           <div class="post-feed">
-            <div class="post-overlays">
-              <img src="img/icon/red-heart.png" class="like-icon" alt="" />
-              <div class="share-window">
-                <h1 class="title">share the post with others</h1>
-                <div class="share-link-container">
-                  <input
-                    type="text"
-                    id="share-link"
-                    value="http://127.0.0.1:8000{% url 'post' post.id %}"
-                    disabled
-                  />
-                  <button class="copy-btn">copy</button>
-                </div>
-              </div>
-            </div>
             <div class="post-img-container">
               <img src="{{post.image.url}}" alt="" />
               <img src="img/posts/post2.png" alt="" />
@@ -149,9 +154,14 @@
       <!-- right section -->
       <div class="user-about-section">
         <div class="user-info">
+          <a href=""></a>
           <img src="{{request.user.image.url}}" class="user-dp" alt="" />
           <div class="info-container">
-            <h1 class="name">{{request.user.username}}</h1>
+            <a
+              href="{% url 'profile' request.user.username %}"
+              style="text-decoration: none; color: black"
+              ><h1 class="name">{{request.user.username}}</h1></a
+            >
             <p>{{request.user.bio}}</p>
           </div>
         </div>

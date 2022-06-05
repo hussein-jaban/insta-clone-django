@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from base.forms import MyCreateUserForm
 from django.core.mail import send_mail
+from django.db.models import Q
 from cloudinary.forms import cl_init_js_callbacks
 
 
@@ -203,3 +204,20 @@ def follow(request, pk):
         new_follower = FollowersCount.objects.create(follower=follower, user=user)
         new_follower.save()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    
+@login_required(login_url='loginPage')
+def searchResults(request):
+    if request.method == 'GET':
+        q = request.GET.get('q')
+        print(q)
+        users = User.objects.filter(Q(username__icontains=q))
+        context = {'users': users}
+        return render(request, 'search_results.html', context)
+    if request.method == 'POST':
+        q = request.POST.get('q')
+        print(q)
+        users = User.objects.filter(Q(username__icontains=q))
+        context = {'users': users}
+        return render(request, 'search_results.html', context)
+
+    

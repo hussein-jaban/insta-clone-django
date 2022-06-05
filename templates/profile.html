@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Socialize : Home Page</title>
+    <title>Insta-clone : Profile</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,11 +23,12 @@
     <!-- navbar -->
     <nav class="navbar">
       <img src="{% static 'img/logo.png' %}" class="logo" alt="" />
-      <form class="search-box">
+      <form class="search-box" action="{% url 'searchResults' %}" method="POST">
+        {% csrf_token %}
         <input
           type="text"
-          placeholder="search"
-          name="search-query"
+          placeholder="Search Users"
+          name="q"
           id="search-input"
         />
         <button class="search-btn" type="submit">
@@ -53,10 +54,16 @@
           />
           <div class="activity-container hide">
             <div class="activity-card">
-              <p class="activity"><b>Profile</b></p>
+              <a
+                href="{% url 'profile' request.user.username %}"
+                style="text-decoration: none; color: black"
+                ><p class="activity"><b>Profile</b></p></a
+              >
             </div>
             <div class="activity-card">
-              <a href="{% url 'accountSettings' %}"
+              <a
+                href="{% url 'accountSettings' %}"
+                style="text-decoration: none; color: black"
                 ><p class="activity"><b>Settings</b></p></a
               >
             </div>

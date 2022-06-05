@@ -24,11 +24,12 @@
     <!-- navbar -->
     <nav class="navbar">
       <img src="{% static 'img/logo.png' %}" class="logo" alt="" />
-      <form class="search-box">
+      <form class="search-box" action="{% url 'searchResults' %}" method="POST">
+        {% csrf_token %}
         <input
           type="text"
-          placeholder="search"
-          name="search-query"
+          placeholder="Search Users"
+          name="q"
           id="search-input"
         />
         <button class="search-btn" type="submit">
@@ -84,66 +85,8 @@
         /></a>
       </div>
     </nav>
-    <!-- navbar -->
-    <!-- <nav class="navbar">
-        <img src="img/logo.png" class="logo" alt="">
-        <form class="search-box">
-            <input type="text" placeholder="search" name="search-query" id="search-input">
-            <button class="search-btn" type="submit"><img src="img/icon/search.png" class="search-icon" alt=""></button>
-        </form>
-        <div class="nav-links">
-            <a href="#" class="nav-links"><img src="img/icon/home-nofill.png" class="nav-icon" alt=""></a>
-            <div class="activity-log">
-                <img src="img/icon/heart-nofill.png" class="nav-icon" alt="">
-                <div class="activity-container hide">
-                    <div class="activity-card">
-                        <img src="img/user1.png" class="user-img" alt="">
-                        <p class="activity"><b>@siri</b> liked your post</p>
-                        <img src="img/posts/post1.png" class="activity-post" alt="">
-                    </div>
-                    <div class="activity-card">
-                        <img src="img/user2.png" class="user-img" alt="">
-                        <p class="activity"><b>@siri</b> liked your post</p>
-                        <img src="img/posts/post1.png" class="activity-post" alt="">
-                    </div>
-                    <div class="activity-card">
-                        <img src="img/user1.png" class="user-img" alt="">
-                        <p class="activity"><b>@siri</b> liked your post</p>
-                        <img src="img/posts/post1.png" class="activity-post" alt="">
-                    </div>
-                    <div class="activity-card">
-                        <img src="img/user3.png" class="user-img" alt="">
-                        <p class="activity"><b>@siri</b> liked your post</p>
-                        <img src="img/posts/post1.png" class="activity-post" alt="">
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="nav-links"><img src="img/icon/add-nofill.png" class="nav-icon" alt=""></a>
-            <a href="#" class="nav-links"><img src="img/profile-img.png" class="nav-icon user-profile" alt=""></a>
-        </div>
-    </nav> -->
-
     <div class="post">
       <div class="post-feed">
-        <div class="post-overlays">
-          <img
-            src="{% static 'img/icon/red-heart.png' %}"
-            class="like-icon"
-            alt=""
-          />
-          <div class="share-window">
-            <h1 class="title">share the post with others</h1>
-            <div class="share-link-container">
-              <input
-                type="text"
-                id="share-link"
-                value="http://127.0.0.1:8000{% url 'post' post.id %}"
-                disabled
-              />
-              <button class="copy-btn">copy</button>
-            </div>
-          </div>
-        </div>
         <div class="post-img-container">
           <img src="{{post.image.url}}" alt="" />
           <img src="img/posts/post2.png" alt="" />
