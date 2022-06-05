@@ -81,22 +81,47 @@
     <div class="user-info">
       <img src="{{user.image.url}}" class="user-dp" alt="" />
       <div class="info-container">
-        <h1 class="name">{{user.username}}</h1>
-        <p class="username">@{{user.username}}</p>
+        <div
+          style="
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+          "
+        >
+          <h1 class="name" style="text-transform: lowercase; margin-top: 5px">
+            @{{user.username}}
+          </h1>
+          {% if request.user != user %}
+          <button class="btn follow-btn" style="margin-left: 90px">
+            follow
+          </button>
+          {% endif %}
+        </div>
+        <div
+          style="
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+            margin-top: 10px;
+          "
+        >
+          <span><b>4</b> posts</span>
+          <span style="margin-left: 13px"><b>3</b> followers</span>
+          <span style="margin-left: 13px"><b>6</b> following</span>
+        </div>
+
         <p>{{user.bio}}</p>
-        <a href="https://www.youtube.com/c/modernweb" class="website-link"
-          >https://www.youtube.com/c/modernweb</a
+        <a href="#" class="website-link"
+          >http://127.0.0.1:8000/profile/{{user.username}}/</a
         >
       </div>
-      <p class="number-card following-card">2K <span>following</span></p>
-      <p class="number-card followers-card">7K <span>followers</span></p>
-      <p class="number-card posts-card">200 <span>posts</span></p>
-    </div>
 
-    <div class="btn-container">
-      <button class="btn follow-btn">follow</button>
-      <button class="btn edit-btn">edit page</button>
-      <button class="btn logout-btn">logout</button>
+      <div class="btn-container">
+        {% if request.user == user %}
+        <button class="btn edit-btn">edit page</button>
+        <button class="btn logout-btn">logout</button>
+        {% endif %}
+      </div>
     </div>
 
     <div class="posts-container">
