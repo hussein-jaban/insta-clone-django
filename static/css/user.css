@@ -1,0 +1,184 @@
+body {
+  padding: 0 10vw 100px;
+}
+
+.user-info {
+  margin-top: 100px;
+  width: 100%;
+  align-items: center;
+  gap: 50px;
+}
+
+.user-dp {
+  width: 150px;
+  height: 150px;
+}
+
+.user-info .username {
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: rgb(134, 134, 134);
+}
+
+.website-link {
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #64b1f8;
+  font-weight: 500;
+}
+
+.number-card {
+  font-size: 4rem;
+  line-height: 1rem;
+}
+
+.number-card span {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 30px;
+  text-transform: capitalize;
+  display: block;
+}
+
+.btn-container {
+  margin-top: 20px;
+  gap: 10px;
+  display: flex;
+}
+
+.btn-container .btn {
+  width: 100px;
+  margin: 0;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.edit-btn,
+.logout-btn {
+  background: #fff;
+  border: 1px solid #999;
+}
+
+.posts-container {
+  margin: 40px 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.posts-container .post {
+  width: 100%;
+  border: none;
+  height: 300px;
+  overflow: hidden;
+  margin-bottom: 0;
+  position: relative;
+  padding: 0;
+}
+
+.post-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.posts-container .likes {
+  z-index: 2;
+  position: absolute;
+  top: 0%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.posts-container .post:hover .likes {
+  opacity: 1;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.likes .likes-count {
+  color: #fff;
+}
+
+.suggestion-slider {
+  width: 100%;
+  position: relative;
+}
+
+.suggestion-container {
+  position: relative;
+  flex-wrap: nowrap;
+  overflow: scroll;
+  scroll-behavior: smooth;
+}
+
+.suggestion-container::-webkit-scrollbar {
+  display: none;
+}
+
+.nxt-arrow,
+.pre-arrow {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.nxt-arrow {
+  right: -50px;
+}
+
+.pre-arrow {
+  left: -50px;
+  transform: rotate(180deg);
+}
+
+.post-popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.post-popup.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.close-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.post-popup .post {
+  border: none;
+  height: 80vh;
+}

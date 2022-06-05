@@ -16,7 +16,8 @@ from cloudinary.forms import cl_init_js_callbacks
 @login_required(login_url='loginPage')
 def home(request):
    posts = Post.objects.all()
-   context = {'posts':posts}
+   allLikes = AllLikes.objects.all()
+   context = {'posts':posts, 'allLikes':allLikes}
    return render(request, 'home.html', context)
   
   
@@ -165,3 +166,11 @@ def likePost(request, pk):
         post.save()
         
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
+@login_required(login_url='loginPage')
+def profile(request, pk):
+    user = User.objects.get(username=pk)
+    context = {'user': user}
+    return render(request, 'profile.html', context)
