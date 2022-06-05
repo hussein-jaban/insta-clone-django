@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.template import context
-from base.models import AllLikes, User, Post, Comment
+from base.models import AllLikes, FollowersCount, User, Post, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from base.forms import MyCreateUserForm
@@ -174,5 +174,32 @@ def profile(request, pk):
     user = User.objects.get(username=pk)
     posts = Post.objects.filter(user__username=pk)
     post_len = len(posts)
-    context = {'user': user, 'posts': posts, 'post_len':post_len}
+    follower = request.user.username
+    current_following = pk
+    btn_text = ''
+    if FollowersCount.objects.filter(follower=follower, user=current_following).first():
+        btn_text = 'Unfollow'
+    else:
+        btn_text = 'Follow'
+    user_followers = len(FollowersCount.objects.filter(user=pk))
+    user_followings = len(FollowersCount.objects.filter(follower=pk))
+    context = {'user': user, 'posts': posts, 
+               'post_len':post_len, 'btn_text':btn_text, 
+               'user_followers':user_followers, 'user_followings':user_followings}
     return render(request, 'profile.html', context)
+
+@login_required(login_url='loginPage')
+def follow(request, pk):
+    user_object = User.objects.get(username= pk)
+    user = user_object.username
+    follower = request.user.username
+    print(user)
+    print(follower)
+    if FollowersCount.objects.filter(follower=follower, user=user).first():
+        delete_follower = FollowersCount.objects.get(follower=follower, user=user)
+        delete_follower.delete()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    else:
+        new_follower = FollowersCount.objects.create(follower=follower, user=user)
+        new_follower.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

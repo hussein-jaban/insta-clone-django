@@ -92,9 +92,14 @@
             @{{user.username}}
           </h1>
           {% if request.user != user %}
-          <button class="btn follow-btn" style="margin-left: 90px">
-            follow
-          </button>
+          <a
+            style="text-decoration: none"
+            href="{% url 'follow' user.username %}"
+          >
+            <button class="btn follow-btn" style="margin-left: 90px">
+              {{btn_text}}
+            </button>
+          </a>
           {% endif %}
         </div>
         <div
@@ -106,8 +111,12 @@
           "
         >
           <span><b>{{post_len}}</b> posts</span>
-          <span style="margin-left: 13px"><b>3</b> followers</span>
-          <span style="margin-left: 13px"><b>6</b> following</span>
+          <span style="margin-left: 13px"
+            ><b>{{user_followers}}</b> followers</span
+          >
+          <span style="margin-left: 13px"
+            ><b>{{user_followings}}</b> following</span
+          >
         </div>
 
         <p>{{user.bio}}</p>
@@ -129,7 +138,7 @@
         {% endif %}
       </div>
     </div>
-
+    {% if post_len > 0 %}
     <div class="posts-container">
       {% for post in posts %}
       <a href="{% url 'post' post.id %}">
@@ -147,7 +156,11 @@
       </a>
       {% endfor %}
     </div>
-
+    {% else %}
+    <div style="max-width: 200px; margin: 50px auto">
+      <h2>No Posts Yet</h2>
+    </div>
+    {% endif %}
     <script src="{% static 'js/post.js' %}"></script>
     <script src="{% static 'js/user.js' %}"></script>
   </body>
