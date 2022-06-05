@@ -136,11 +136,9 @@
               /></a>
             </div>
             <span class="likes">{{post.likes}} likes</span>
-            <p class="username" style="font-weight: 100; color: #8a8a8a">
-              @{{post.user.username}}
-            </p>
+
             <p class="post-des">{{post.caption}}</p>
-            <span class="comment-count">300 comments</span>
+            <span class="comment-count">{{post.comments}} comments</span>
           </div>
         </div>
         {% endfor %}
