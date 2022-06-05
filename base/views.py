@@ -1,10 +1,10 @@
 import email
 from email.mime import image
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.template import context
-from base.models import User, Post, Comment
+from base.models import AllLikes, User, Post, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from base.forms import MyCreateUserForm
@@ -127,7 +127,7 @@ def uploadPic(request):
 def post(request, pk):
     post = Post.objects.get(id=pk)
     post_comments = post.comment_set.all().order_by('-created')
-    context = {'post':post, 'post_comments':post_comments}
+    liked_post = ''
     if request.method == 'POST':
         print(request.POST.get('body'))
         comment = Comment.objects.create(
@@ -138,4 +138,30 @@ def post(request, pk):
         post.comments = post.comments + 1
         post.save()
         return redirect('post', pk=post.id)
+    username = request.user.username
+    post = Post.objects.get(id=pk)
+    like_filter = AllLikes.objects.filter(post_id=pk, username=username).first()
+    if like_filter == None:
+        liked_post = 'img/icon/like-nofill.png'
+    else:
+        liked_post = 'img/icon/like-fill.png'
+    context = {'post':post, 'post_comments':post_comments, 'liked_post':liked_post}   
     return render(request, 'post.html', context)
+  
+@login_required(login_url='loginPage')
+def likePost(request, pk):
+    username = request.user.username
+    post = Post.objects.get(id=pk)
+    
+    like_filter = AllLikes.objects.filter(post_id=pk, username=username).first()
+    if like_filter == None:
+        new_like = AllLikes.objects.create(post_id=pk, username=username)
+        new_like.save()
+        post.likes = post.likes + 1
+        post.save()
+    else:
+        like_filter.delete()
+        post.likes = post.likes - 1
+        post.save()
+        
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

@@ -9,5 +9,6 @@ urlpatterns = [
     path('accountSettings/', views.accountSettings, name='accountSettings'),
     path('uploadPic/', views.uploadPic, name='uploadPic'),
     path('post/<pk>/', views.post, name='post'),
+    path('likePost/<pk>/', views.likePost, name='likePost'),
     
 ]

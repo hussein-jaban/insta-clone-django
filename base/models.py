@@ -41,5 +41,14 @@ class Comment(models.Model):
       
    def __str__(self):
          return self.body[0:50]
+      
+      
+class AllLikes(models.Model):
+   post_id = models.CharField(max_length=200)
+   username = models.CharField(max_length=200)
+   
+   def __str__(self):
+         return self.username
+   
    
    

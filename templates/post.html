@@ -160,11 +160,9 @@
         </div>
         <div class="post-detail">
           <div class="detail-intracables">
-            <img
-              src="{% static 'img/icon/heart-nofill.png' %}"
-              class="like-btn"
-              alt=""
-            />
+            <a href="{% url 'likePost' post.id %}">
+              <img src="{% static liked_post %}" class="like-btn" alt=""
+            /></a>
             <img
               src="{% static 'img/icon/send-nofill.png' %}"
               class="send-btn"
