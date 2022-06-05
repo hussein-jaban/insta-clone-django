@@ -11,6 +11,7 @@ from base.forms import MyCreateUserForm
 from django.core.mail import send_mail
 from django.db.models import Q
 from cloudinary.forms import cl_init_js_callbacks
+import random
 
 
 # Create your views here.
@@ -18,7 +19,15 @@ from cloudinary.forms import cl_init_js_callbacks
 def home(request):
    posts = Post.objects.all()
    allLikes = AllLikes.objects.all()
-   context = {'posts':posts, 'allLikes':allLikes}
+   all_users = User.objects.all()
+   suggested_users = []
+   for n in list(all_users):
+       if n.username != request.user.username:
+           suggested_users.append(n)
+   random_users = []
+   for n in range(3):
+       random_users.append(random.choice(suggested_users))
+   context = {'posts':posts, 'allLikes':allLikes, 'random_users': random_users}
    return render(request, 'home.html', context)
   
   
@@ -123,7 +132,7 @@ def uploadPic(request):
         new_post = Post.objects.create(user=request.user, image=image, caption=caption)
         new_post.save()
         return redirect('home')
-    return HttpResponse('upload')
+    return render(request, 'upload_pic.html')
   
 @login_required(login_url='loginPage')
 def post(request, pk):

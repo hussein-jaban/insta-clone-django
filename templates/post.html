@@ -77,7 +77,7 @@
             alt=""
           />
         </p>
-        <a href="#" class="nav-links"
+        <a href="{% url 'profile' request.user.username %}" class="nav-links"
           ><img
             src="{{request.user.image.url}}"
             class="nav-icon user-profile"
