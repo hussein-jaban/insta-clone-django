@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib import messages
 from django.template import context
-from base.models import User, Post
+from base.models import User, Post, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from base.forms import MyCreateUserForm
@@ -125,7 +125,17 @@ def uploadPic(request):
   
 @login_required(login_url='loginPage')
 def post(request, pk):
-    print(pk)
     post = Post.objects.get(id=pk)
-    context = {'post':post}
+    post_comments = post.comment_set.all().order_by('-created')
+    context = {'post':post, 'post_comments':post_comments}
+    if request.method == 'POST':
+        print(request.POST.get('body'))
+        comment = Comment.objects.create(
+            user = request.user,
+            post = post,
+            body = request.POST.get('body')
+        )
+        post.comments = post.comments + 1
+        post.save()
+        return redirect('post', pk=post.id)
     return render(request, 'post.html', context)

@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Socialize : Home Page</title>
+    <title>Insta-clone : Post</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -176,71 +176,41 @@
               alt=""
             />
           </div>
-          <span class="likes">{{post.likes}} likes</span>
+          <div style="display: flex">
+            <span class="likes">{{post.likes}} likes</span>
+            <span class="likes" style="margin-left: 10px"
+              >{{post.comments}} comments</span
+            >
+          </div>
 
           <p class="post-des">{{post.caption}}</p>
 
           <div class="comments-container">
+            {% for comment in post_comments %}
             <div class="comment-card">
-              <img src="img/user1.png" class="user-dp" alt="" />
+              <img src="{{comment.user.image.url}}" class="user-dp" alt="" />
               <div class="comment-body">
-                <span class="username">@modernweb</span>
-                <p class="comment">
-                  this is amazing 🔥 this is amazing 🔥 this is amazing 🔥 this
-                  is amazing 🔥
-                </p>
+                <span class="username">@{{comment.user.username}}</span>
+                <p class="comment">{{comment.body}}</p>
               </div>
             </div>
-            <div class="comment-card">
-              <img src="img/user2.png" class="user-dp" alt="" />
-              <div class="comment-body">
-                <span class="username">@alex</span>
-                <p class="comment">this is amazing 🔥</p>
-              </div>
-            </div>
-            <div class="comment-card">
-              <img src="img/user3.png" class="user-dp" alt="" />
-              <div class="comment-body">
-                <span class="username">@siri</span>
-                <p class="comment">this is amazing 🔥</p>
-              </div>
-            </div>
-            <div class="comment-card">
-              <img src="img/user4.png" class="user-dp" alt="" />
-              <div class="comment-body">
-                <span class="username">@jack</span>
-                <p class="comment">this is amazing 🔥</p>
-              </div>
-            </div>
-            <div class="comment-card">
-              <img src="img/user4.png" class="user-dp" alt="" />
-              <div class="comment-body">
-                <span class="username">@jack</span>
-                <p class="comment">this is amazing 🔥</p>
-              </div>
-            </div>
-            <div class="comment-card">
-              <img src="img/user4.png" class="user-dp" alt="" />
-              <div class="comment-body">
-                <span class="username">@jack</span>
-                <p class="comment">this is amazing 🔥</p>
-              </div>
-            </div>
-            <div class="comment-card">
-              <img src="img/user4.png" class="user-dp" alt="" />
-              <div class="comment-body">
-                <span class="username">@jack</span>
-                <p class="comment">this is amazing 🔥</p>
-              </div>
-            </div>
+            {% endfor %}
           </div>
-
-          <div class="comment-box">
-            <input type="text" id="comment-input" placeholder="Add a comment" />
-            <button class="add-comment-btn">
-              <img src="{% static 'img/icon/comment-nofill.png' %}" alt="" />
-            </button>
-          </div>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="comment-box">
+              <input
+                type="text"
+                id="comment-input"
+                placeholder="Add a comment"
+                name="body"
+                required
+              />
+              <button class="add-comment-btn" type="submit">
+                <img src="{% static 'img/icon/comment-nofill.png' %}" alt="" />
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

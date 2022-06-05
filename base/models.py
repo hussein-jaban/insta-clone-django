@@ -21,10 +21,25 @@ class Post(models.Model):
     caption = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
+    comments = models.IntegerField(default=0)
+    
 
     class Meta:
       ordering = ['-created']
     def __str__(self):
         return self.user.username
+     
+     
+class Comment(models.Model):
+   user = models.ForeignKey(User, on_delete=models.CASCADE)
+   post = models.ForeignKey(Post, on_delete=models.CASCADE)
+   body = models.TextField()
+   created = models.DateTimeField(auto_now_add=True)  
+   
+   class Meta:
+      ordering = ['-created']
+      
+   def __str__(self):
+         return self.body[0:50]
    
    
