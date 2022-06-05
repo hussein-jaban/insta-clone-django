@@ -68,13 +68,6 @@
             </div>
           </div>
         </div>
-        <p class="nav-links open">
-          <img
-            src="{% static 'img/icon/add-nofill.png' %}"
-            class="nav-icon"
-            alt=""
-          />
-        </p>
         <a href="#" class="nav-links"
           ><img
             src="{{request.user.image.url}}"
@@ -86,16 +79,11 @@
 
     <!-- user info -->
     <div class="user-info">
-      <img src="img/profile-img.png" class="user-dp" alt="" />
+      <img src="{{user.image.url}}" class="user-dp" alt="" />
       <div class="info-container">
-        <h1 class="name">Kunaal Kumar</h1>
-        <p class="username">@modernweb</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut nulla
-          iusto nihil magni enim laudantium, autem rerum quae dolor,
-          voluptatibus natus? Numquam voluptatem aperiam quos repudiandae autem
-          recusandae magni inventore.
-        </p>
+        <h1 class="name">{{user.username}}</h1>
+        <p class="username">@{{user.username}}</p>
+        <p>{{user.bio}}</p>
         <a href="https://www.youtube.com/c/modernweb" class="website-link"
           >https://www.youtube.com/c/modernweb</a
         >
@@ -112,224 +100,21 @@
     </div>
 
     <div class="posts-container">
-      <div class="post">
-        <img src="img/posts/post1.png" class="post-img" alt="" />
-        <div class="likes">
-          <img src="img/icon/white-heart.png" class="icon" alt="" />
-          <p class="likes-count">2.7k likes</p>
-        </div>
-      </div>
-      <div class="post">
-        <img src="img/posts/post2.png" class="post-img" alt="" />
-        <div class="likes">
-          <img src="img/icon/white-heart.png" class="icon" alt="" />
-          <p class="likes-count">2.7k likes</p>
-        </div>
-      </div>
-      <div class="post">
-        <img src="img/posts/post3.png" class="post-img" alt="" />
-        <div class="likes">
-          <img src="img/icon/white-heart.png" class="icon" alt="" />
-          <p class="likes-count">2.7k likes</p>
-        </div>
-      </div>
-      <div class="post">
-        <img src="img/posts/post4.png" class="post-img" alt="" />
-        <div class="likes">
-          <img src="img/icon/white-heart.png" class="icon" alt="" />
-          <p class="likes-count">2.7k likes</p>
-        </div>
-      </div>
-      <div class="post">
-        <img src="img/posts/post5.png" class="post-img" alt="" />
-        <div class="likes">
-          <img src="img/icon/white-heart.png" class="icon" alt="" />
-          <p class="likes-count">2.7k likes</p>
-        </div>
-      </div>
-      <div class="post">
-        <img src="img/posts/post6.png" class="post-img" alt="" />
-        <div class="likes">
-          <img src="img/icon/white-heart.png" class="icon" alt="" />
-          <p class="likes-count">2.7k likes</p>
-        </div>
-      </div>
-      <div class="post">
-        <img src="img/posts/post7.png" class="post-img" alt="" />
-        <div class="likes">
-          <img src="img/icon/white-heart.png" class="icon" alt="" />
-          <p class="likes-count">2.7k likes</p>
-        </div>
-      </div>
-      <div class="post">
-        <img src="img/posts/post8.png" class="post-img" alt="" />
-        <div class="likes">
-          <img src="img/icon/white-heart.png" class="icon" alt="" />
-          <p class="likes-count">2.7k likes</p>
-        </div>
-      </div>
-      <div class="post">
-        <img src="img/posts/post9.png" class="post-img" alt="" />
-        <div class="likes">
-          <img src="img/icon/white-heart.png" class="icon" alt="" />
-          <p class="likes-count">2.7k likes</p>
-        </div>
-      </div>
-    </div>
-
-    <h1 class="suggestion-heading">Suggestions</h1>
-    <div class="suggestion-slider">
-      <img src="img/carousel-arrow.png" class="nxt-arrow" alt="" />
-      <img src="img/carousel-arrow.png" class="pre-arrow" alt="" />
-      <div class="suggestion-container">
-        <div class="user-card">
-          <img src="img/user1.png" class="user-dp" alt="" />
-          <p class="username">@john</p>
-          <button class="follow-btn">follow</button>
-        </div>
-        <div class="user-card">
-          <img src="img/user2.png" class="user-dp" alt="" />
-          <p class="username">@john</p>
-          <button class="follow-btn">follow</button>
-        </div>
-        <div class="user-card">
-          <img src="img/user3.png" class="user-dp" alt="" />
-          <p class="username">@john</p>
-          <button class="follow-btn">follow</button>
-        </div>
-        <div class="user-card">
-          <img src="img/user4.png" class="user-dp" alt="" />
-          <p class="username">@john</p>
-          <button class="follow-btn">follow</button>
-        </div>
-        <div class="user-card">
-          <img src="img/user5.png" class="user-dp" alt="" />
-          <p class="username">@john</p>
-          <button class="follow-btn">follow</button>
-        </div>
-        <div class="user-card">
-          <img src="img/user6.png" class="user-dp" alt="" />
-          <p class="username">@john</p>
-          <button class="follow-btn">follow</button>
-        </div>
-        <div class="user-card">
-          <img src="img/user3.png" class="user-dp" alt="" />
-          <p class="username">@john</p>
-          <button class="follow-btn">follow</button>
-        </div>
-        <div class="user-card">
-          <img src="img/user4.png" class="user-dp" alt="" />
-          <p class="username">@john</p>
-          <button class="follow-btn">follow</button>
-        </div>
-        <div class="user-card">
-          <img src="img/user5.png" class="user-dp" alt="" />
-          <p class="username">@john</p>
-          <button class="follow-btn">follow</button>
-        </div>
-        <div class="user-card">
-          <img src="img/user6.png" class="user-dp" alt="" />
-          <p class="username">@john</p>
-          <button class="follow-btn">follow</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- popup post -->
-    <div class="post-popup">
-      <div class="close-overlay"></div>
-      <div class="post">
-        <div class="post-feed">
-          <div class="post-overlays">
-            <img src="img/icon/red-heart.png" class="like-icon" alt="" />
-            <div class="share-window">
-              <h1 class="title">share the post with others</h1>
-              <div class="share-link-container">
-                <input
-                  type="text"
-                  id="share-link"
-                  value="https://www.socialize.com/post/234234234234"
-                  disabled
-                />
-                <button class="copy-btn">copy</button>
-              </div>
-            </div>
-          </div>
-          <div class="post-img-container">
-            <img src="img/posts/post1.png" alt="" />
-            <img src="img/posts/post2.png" alt="" />
-            <img src="img/posts/post3.png" alt="" />
-            <img src="img/posts/post4.png" alt="" />
-            <img src="img/posts/post5.png" alt="" />
+      {% for post in posts %}
+      <a href="{% url 'post' post.id %}">
+        <div class="post">
+          <img src="{{post.image.url}}" class="post-img" alt="" />
+          <div class="likes">
+            <img
+              src="{% static 'img/icon/white-heart.png' %}"
+              class="icon"
+              alt=""
+            />
+            <p class="likes-count">{{post.likes}} likes</p>
           </div>
         </div>
-
-        <div class="feed">
-          <div class="post-header">
-            <img src="img/user2.png" class="user-icon" alt="" />
-            <p class="username">@modernweb</p>
-          </div>
-          <div class="post-detail">
-            <div class="detail-intracables">
-              <img src="img/icon/heart-nofill.png" class="like-btn" alt="" />
-              <img src="img/icon/send-nofill.png" class="send-btn" alt="" />
-              <img
-                src="img/icon/comment-nofill.png"
-                class="comment-btn"
-                alt=""
-              />
-            </div>
-            <p class="post-des">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-              ipsa incidunt obcaecati esse illo voluptates libero debitis nisi.
-              Id tempora vel illum vitae temporibus commodi non cupiditate atque
-              voluptas. Ipsam.
-            </p>
-
-            <div class="comments-container">
-              <div class="comment-card">
-                <img src="img/user1.png" class="user-dp" alt="" />
-                <div class="comment-body">
-                  <span class="username">@modernweb</span>
-                  <p class="comment">this is amazing 🔥</p>
-                </div>
-              </div>
-              <div class="comment-card">
-                <img src="img/user2.png" class="user-dp" alt="" />
-                <div class="comment-body">
-                  <span class="username">@alex</span>
-                  <p class="comment">this is amazing 🔥</p>
-                </div>
-              </div>
-              <div class="comment-card">
-                <img src="img/user3.png" class="user-dp" alt="" />
-                <div class="comment-body">
-                  <span class="username">@siri</span>
-                  <p class="comment">this is amazing 🔥</p>
-                </div>
-              </div>
-              <div class="comment-card">
-                <img src="img/user4.png" class="user-dp" alt="" />
-                <div class="comment-body">
-                  <span class="username">@jack</span>
-                  <p class="comment">this is amazing 🔥</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="comment-box">
-              <input
-                type="text"
-                id="comment-input"
-                placeholder="Add a comment"
-              />
-              <button class="add-comment-btn">
-                <img src="img/icon/comment-nofill.png" alt="" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      </a>
+      {% endfor %}
     </div>
 
     <script src="{% static 'js/post.js' %}"></script>

@@ -172,5 +172,7 @@ def likePost(request, pk):
 @login_required(login_url='loginPage')
 def profile(request, pk):
     user = User.objects.get(username=pk)
-    context = {'user': user}
+    posts = Post.objects.filter(user__username=pk)
+
+    context = {'user': user, 'posts': posts}
     return render(request, 'profile.html', context)
