@@ -474,7 +474,7 @@ body {
 .modal-cont {
   position: relative;
   background-color: #fff;
-  width: 65%;
+  width: 40%;
   border-radius: 20px;
   padding: 20px;
 }
@@ -522,16 +522,16 @@ body {
   align-items: center;
   margin: 0 100px;
 }
-
-.model-cont-copy {
-  max-width: 60%;
-
-  margin: 20px auto;
-  /* margin-top: 20px; */
+.form-upload {
+  margin: 10px 40px;
 }
-
-.model-cont-copy .copy_input {
+.img-file {
+  margin-bottom: 20px;
+}
+.img-caption textarea {
   padding: 10px;
-  max-width: 200px;
-  border-radius: 15px;
+  border-radius: 10px;
+}
+.modal-footer {
+  display: flex;
 }

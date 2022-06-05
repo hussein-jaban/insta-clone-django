@@ -63,7 +63,7 @@
             </div>
           </div>
         </div>
-        <p class="nav-links open"></p>
+        <p class="nav-links open">
           <img
             src="{% static 'img/icon/add-nofill.png' %}"
             class="nav-icon"
@@ -160,7 +160,7 @@
         <div class="user-info">
           <img src="{{request.user.image.url}}" class="user-dp" alt="" />
           <div class="info-container">
-            <h1 class="name">@{{request.user.username}}</h1>
+            <h1 class="name">{{request.user.username}}</h1>
             <p>{{request.user.bio}}</p>
           </div>
         </div>
@@ -189,26 +189,57 @@
       <div class="modal-cont">
         <h5 class="modal-title">{{image.name}}</h5>
         <div class="model-cont">
-          
+          <div>
+            <div>
+              <img
+                src="{% static 'img/icon/upload-to-cloud-100.png' %}"
+                alt=""
+              />
+            </div>
+            <h2>Upload a Pic</h2>
+          </div>
         </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-upload">
+            <div class="img-file">
+              <label for="pic">Image:</label>
+              <br />
+              <input type="file" name="image" id="pic" required />
+            </div>
+            <div class="img-caption">
+              <textarea
+                name="caption"
+                id=""
+                cols="30"
+                rows="7"
+                placeholder="Caption"
+                required
+              ></textarea>
+            </div>
+          </div>
 
-        <div class="modal-footer">
-          <button
-            class="modal-close2"
-            style="
-              padding: 10px;
-              background-color: gray;
-              border-radius: 10px;
-              outline: none;
-              border: none;
-              cursor: pointer;
-              color: #e4e2e2;
-            "
-          >
-            Close
-          </button>
-        </div>
-
+          <div class="modal-footer">
+            <button
+              class="modal-close2"
+              style="
+                padding: 10px;
+                background-color: gray;
+                border-radius: 10px;
+                outline: none;
+                border: none;
+                cursor: pointer;
+                color: #ffffff;
+                margin-left: 5px;
+              "
+            >
+              Close
+            </button>
+            <button type="submit" class="follow-btn" style="margin-left: 10px">
+              Upload
+            </button>
+          </div>
+        </form>
         <span class="modal-close">&times;</span>
       </div>
     </div>

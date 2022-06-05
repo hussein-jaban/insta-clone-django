@@ -14,8 +14,10 @@ from django.core.mail import send_mail
 @login_required(login_url='loginPage')
 def home(request):
    if request.method == 'POST':
-     email = request.POST['email']
-     
+     image = request.FILES.get('image')
+     caption = request.POST.get('caption')
+     print(image)
+     print(caption)
    return render(request, 'home.html')
   
   
