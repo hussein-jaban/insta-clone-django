@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from base.forms import MyCreateUserForm
 from django.core.mail import send_mail
+from cloudinary.forms import cl_init_js_callbacks
+
 
 
 
@@ -83,13 +85,30 @@ def registerPage(request):
           
     return render(request, 'register.html', context)
 
-
+@login_required(login_url='loginPage')
 def accountSettings(request):
   
     if request.method == 'POST':
-      username = request.POST.get('username')
-      email = request.POST.get('email')
+      username = request.POST.get('username').lower()
       bio = request.POST.get('bio')
       image = request.FILES.get('image')
-      print(username, email, bio, image)
+      print(username, bio, image)
+
+      if User.objects.filter(username=username).exists():
+          messages.info(request, 'Username is taken')
+          return redirect('accountSettings')
+      else:
+        user = request.user
+        if image != None:
+          user.username = username
+          user.bio = bio
+          user.image = image
+          user.save()
+        else:
+          user.username = username
+          user.bio = bio
+          user.save()
+        return redirect('accountSettings')
+          
+      
     return render (request, 'account_settings.html')

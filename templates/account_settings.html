@@ -16,6 +16,7 @@
     <title>Insta-clone : Account-settings</title>
   </head>
   <body>
+    {%load cloudinary%}
     <form action="" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
 
@@ -75,20 +76,18 @@
                     </div>
 
                     <div class="form-group">
-                      <label class="form-label">E-mail</label>
-                      <input
-                        type="email"
-                        class="form-control mb-1"
-                        value="{{request.user.email}}"
-                        name="email"
-                      />
-                    </div>
-                    <div class="form-group">
                       <label class="form-label">Bio</label>
                       <textarea class="form-control" rows="3" name="bio">
                      {{request.user.bio}}
                      </textarea
                       >
+                    </div>
+                    <div style="margin-top: 10px">
+                      {% if messages %} {% for message in messages %}
+                      <p class="messages" style="color: #e75050">
+                        {{ message }}
+                      </p>
+                      {% endfor %} {% endif %}
                     </div>
                   </div>
                 </div>
@@ -101,9 +100,7 @@
           <button type="submit" class="btn btn-outline-primary">
             Save changes</button
           >&nbsp;
-          <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary"
-            >Cancel</a
-          >
+          <a href="/" class="btn btn-secondary">Cancel</a>
         </div>
       </div>
     </form>
