@@ -1,0 +1,278 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socialize : Home Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/post.css' %}" />
+  </head>
+
+  <body>
+    {%load cloudinary%}
+    <!-- navbar -->
+    <nav class="navbar">
+      <img src="{% static 'img/logo.png' %}" class="logo" alt="" />
+      <form class="search-box">
+        <input
+          type="text"
+          placeholder="search"
+          name="search-query"
+          id="search-input"
+        />
+        <button class="search-btn" type="submit">
+          <img
+            src="{% static 'img/icon/search.png' %}"
+            class="search-icon"
+            alt=""
+          />
+        </button>
+      </form>
+      <div class="nav-links">
+        <a href="#" class="nav-links"
+          ><img
+            src="{% static 'img/icon/home-fill.png' %}"
+            class="nav-icon"
+            alt=""
+        /></a>
+        <div class="activity-log">
+          <img
+            src="{% static 'img/icon/icons-settings.png' %}"
+            class="nav-icon"
+            alt=""
+          />
+          <div class="activity-container hide">
+            <div class="activity-card">
+              <p class="activity"><b>Profile</b></p>
+            </div>
+            <div class="activity-card">
+              <a href="{% url 'accountSettings' %}"
+                ><p class="activity"><b>Settings</b></p></a
+              >
+            </div>
+            <hr />
+            <div class="activity-card">
+              <a href="{% url 'logout' %}"
+                ><p class="activity"><b>Logout</b></p></a
+              >
+            </div>
+          </div>
+        </div>
+        <p class="nav-links open">
+          <img
+            src="{% static 'img/icon/add-nofill.png' %}"
+            class="nav-icon"
+            alt=""
+          />
+        </p>
+        <a href="#" class="nav-links"
+          ><img
+            src="{{request.user.image.url}}"
+            class="nav-icon user-profile"
+            alt=""
+        /></a>
+      </div>
+    </nav>
+    <!-- navbar -->
+    <!-- <nav class="navbar">
+        <img src="img/logo.png" class="logo" alt="">
+        <form class="search-box">
+            <input type="text" placeholder="search" name="search-query" id="search-input">
+            <button class="search-btn" type="submit"><img src="img/icon/search.png" class="search-icon" alt=""></button>
+        </form>
+        <div class="nav-links">
+            <a href="#" class="nav-links"><img src="img/icon/home-nofill.png" class="nav-icon" alt=""></a>
+            <div class="activity-log">
+                <img src="img/icon/heart-nofill.png" class="nav-icon" alt="">
+                <div class="activity-container hide">
+                    <div class="activity-card">
+                        <img src="img/user1.png" class="user-img" alt="">
+                        <p class="activity"><b>@siri</b> liked your post</p>
+                        <img src="img/posts/post1.png" class="activity-post" alt="">
+                    </div>
+                    <div class="activity-card">
+                        <img src="img/user2.png" class="user-img" alt="">
+                        <p class="activity"><b>@siri</b> liked your post</p>
+                        <img src="img/posts/post1.png" class="activity-post" alt="">
+                    </div>
+                    <div class="activity-card">
+                        <img src="img/user1.png" class="user-img" alt="">
+                        <p class="activity"><b>@siri</b> liked your post</p>
+                        <img src="img/posts/post1.png" class="activity-post" alt="">
+                    </div>
+                    <div class="activity-card">
+                        <img src="img/user3.png" class="user-img" alt="">
+                        <p class="activity"><b>@siri</b> liked your post</p>
+                        <img src="img/posts/post1.png" class="activity-post" alt="">
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="nav-links"><img src="img/icon/add-nofill.png" class="nav-icon" alt=""></a>
+            <a href="#" class="nav-links"><img src="img/profile-img.png" class="nav-icon user-profile" alt=""></a>
+        </div>
+    </nav> -->
+
+    <div class="post">
+      <div class="post-feed">
+        <div class="post-overlays">
+          <img src="img/icon/red-heart.png" class="like-icon" alt="" />
+          <div class="share-window">
+            <h1 class="title">share the post with others</h1>
+            <div class="share-link-container">
+              <input
+                type="text"
+                id="share-link"
+                value="https://www.socialize.com/post/234234234234"
+                disabled
+              />
+              <button class="copy-btn">copy</button>
+            </div>
+          </div>
+        </div>
+        <div class="post-img-container">
+          <img src="img/posts/post1.png" alt="" />
+          <img src="img/posts/post2.png" alt="" />
+          <img src="img/posts/post3.png" alt="" />
+          <img src="img/posts/post4.png" alt="" />
+          <img src="img/posts/post5.png" alt="" />
+        </div>
+      </div>
+
+      <div class="feed">
+        <div class="post-header">
+          <img src="img/user2.png" class="user-icon" alt="" />
+          <p class="username">@modernweb</p>
+        </div>
+        <div class="post-detail">
+          <div class="detail-intracables">
+            <img src="img/icon/heart-nofill.png" class="like-btn" alt="" />
+            <img src="img/icon/send-nofill.png" class="send-btn" alt="" />
+            <img src="img/icon/comment-nofill.png" class="comment-btn" alt="" />
+          </div>
+          <span class="likes">2.7k likes</span>
+          <p class="username">@modernweb</p>
+          <p class="post-des">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+            ipsa incidunt obcaecati esse illo voluptates libero debitis nisi. Id
+            tempora vel illum vitae temporibus commodi non cupiditate atque
+            voluptas. Ipsam.
+          </p>
+
+          <div class="comments-container">
+            <div class="comment-card">
+              <img src="img/user1.png" class="user-dp" alt="" />
+              <div class="comment-body">
+                <span class="username">@modernweb</span>
+                <p class="comment">this is amazing 🔥</p>
+              </div>
+            </div>
+            <div class="comment-card">
+              <img src="img/user2.png" class="user-dp" alt="" />
+              <div class="comment-body">
+                <span class="username">@alex</span>
+                <p class="comment">this is amazing 🔥</p>
+              </div>
+            </div>
+            <div class="comment-card">
+              <img src="img/user3.png" class="user-dp" alt="" />
+              <div class="comment-body">
+                <span class="username">@siri</span>
+                <p class="comment">this is amazing 🔥</p>
+              </div>
+            </div>
+            <div class="comment-card">
+              <img src="img/user4.png" class="user-dp" alt="" />
+              <div class="comment-body">
+                <span class="username">@jack</span>
+                <p class="comment">this is amazing 🔥</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="comment-box">
+            <input type="text" id="comment-input" placeholder="Add a comment" />
+            <button class="add-comment-btn">
+              <img src="img/icon/comment-nofill.png" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/post.js"></script>
+    <!-- Modal -->
+    <div class="modal-bg">
+      <div class="modal-cont">
+        <h5 class="modal-title">{{image.name}}</h5>
+        <div class="model-cont">
+          <div>
+            <div>
+              <img
+                src="{% static 'img/icon/upload-to-cloud-100.png' %}"
+                alt=""
+              />
+            </div>
+            <h2>Upload a Pic</h2>
+          </div>
+        </div>
+        <form
+          action="{% url 'uploadPic' %}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <div class="form-upload">
+            <div class="img-file">
+              <label for="pic">Image:</label>
+              <br />
+              <input type="file" name="image" id="pic" required />
+            </div>
+            <div class="img-caption">
+              <textarea
+                name="caption"
+                id=""
+                cols="50"
+                rows="7"
+                placeholder="Caption"
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              class="modal-close2"
+              style="
+                padding: 10px;
+                background-color: gray;
+                border-radius: 10px;
+                outline: none;
+                border: none;
+                cursor: pointer;
+                color: #ffffff;
+                margin-left: 5px;
+              "
+            >
+              Close
+            </button>
+            <button type="submit" class="follow-btn" style="margin-left: 10px">
+              Upload
+            </button>
+          </div>
+        </form>
+        <span class="modal-close">&times;</span>
+      </div>
+    </div>
+  </body>
+</html>
