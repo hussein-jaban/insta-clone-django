@@ -82,3 +82,14 @@ def registerPage(request):
              messages.error(request, 'An error ocurred during registration.')
           
     return render(request, 'register.html', context)
+
+
+def accountSettings(request):
+  
+    if request.method == 'POST':
+      username = request.POST.get('username')
+      email = request.POST.get('email')
+      bio = request.POST.get('bio')
+      image = request.FILES.get('image')
+      print(username, email, bio, image)
+    return render (request, 'account_settings.html')
