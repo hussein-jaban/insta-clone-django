@@ -1,8 +1,10 @@
 import email
+from email.mime import image
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib import messages
-from base.models import User
+from django.template import context
+from base.models import User, Post
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from base.forms import MyCreateUserForm
@@ -10,17 +12,12 @@ from django.core.mail import send_mail
 from cloudinary.forms import cl_init_js_callbacks
 
 
-
-
 # Create your views here.
 @login_required(login_url='loginPage')
 def home(request):
-   if request.method == 'POST':
-     image = request.FILES.get('image')
-     caption = request.POST.get('caption')
-     print(image)
-     print(caption)
-   return render(request, 'home.html')
+   posts = Post.objects.all()
+   context = {'posts':posts}
+   return render(request, 'home.html', context)
   
   
 def loginPage(request):
@@ -112,3 +109,16 @@ def accountSettings(request):
           
       
     return render (request, 'account_settings.html')
+  
+  
+@login_required(login_url='loginPage')
+def uploadPic(request):
+    if request.method == 'POST':
+        image = request.FILES.get('image')
+        caption = request.POST.get('caption')
+        print(image)
+        print(caption)
+        new_post = Post.objects.create(user=request.user, image=image, caption=caption)
+        new_post.save()
+        return redirect('home')
+    return HttpResponse('upload')

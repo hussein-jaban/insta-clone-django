@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Insta-clone : Home Page</title>
+    <title>Insta-clone : Home</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
+    {%load cloudinary%}
     <!-- navbar -->
     <nav class="navbar">
       <img src="{% static 'img/logo.png' %}" class="logo" alt="" />
@@ -85,10 +86,11 @@
     <section class="main">
       <!-- post section -->
       <div class="post-container">
+        {% for post in posts %}
         <div class="post">
           <div class="post-header">
-            <img src="img/user2.png" class="user-icon" alt="" />
-            <p class="username">@modernweb</p>
+            <img src="{{post.user.image.url}}" class="user-icon" alt="" />
+            <p class="username">@{{post.user.username}}</p>
           </div>
           <div class="post-feed">
             <div class="post-overlays">
@@ -107,7 +109,7 @@
               </div>
             </div>
             <div class="post-img-container">
-              <img src="img/posts/post1.png" alt="" />
+              <img src="{{post.image.url}}" alt="" />
               <img src="img/posts/post2.png" alt="" />
               <img src="img/posts/post3.png" alt="" />
               <img src="img/posts/post4.png" alt="" />
@@ -132,14 +134,11 @@
                 alt=""
               />
             </div>
-            <span class="likes">2.7k likes</span>
-            <p class="username">@modernweb</p>
-            <p class="post-des">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-              ipsa incidunt obcaecati esse illo voluptates libero debitis nisi.
-              Id tempora vel illum vitae temporibus commodi non cupiditate atque
-              voluptas. Ipsam.
+            <span class="likes">{{post.likes}} likes</span>
+            <p class="username" style="font-weight: 100; color: #8a8a8a">
+              @{{post.user.username}}
             </p>
+            <p class="post-des">{{post.caption}}</p>
 
             <div class="comment-box">
               <input
@@ -155,6 +154,7 @@
             <span class="comment-count">300 comments</span>
           </div>
         </div>
+        {% endfor %}
       </div>
 
       <!-- right section -->
@@ -201,7 +201,11 @@
             <h2>Upload a Pic</h2>
           </div>
         </div>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form
+          action="{% url 'uploadPic' %}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
           {% csrf_token %}
           <div class="form-upload">
             <div class="img-file">

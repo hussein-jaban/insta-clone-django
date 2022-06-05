@@ -16,7 +16,7 @@ class User(AbstractUser):
    
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    user = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     image = CloudinaryField('image')
     caption = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
@@ -25,6 +25,6 @@ class Post(models.Model):
     class Meta:
       ordering = ['-created']
     def __str__(self):
-        return self.user
+        return self.user.username
    
    
