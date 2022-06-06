@@ -75,7 +75,7 @@
             </div>
           </div>
         </div>
-        <a href="#" class="nav-links"
+        <a href="{% url 'profile' request.user.username %}" class="nav-links"
           ><img
             src="{{request.user.image.url}}"
             class="nav-icon user-profile"
@@ -128,7 +128,7 @@
 
         <p>{{user.bio}}</p>
         <a href="#" class="website-link"
-          >http://127.0.0.1:8000/profile/{{user.username}}/</a
+          >https://insta-clone-djang.herokuapp.com/profile/{{user.username}}/</a
         >
       </div>
 

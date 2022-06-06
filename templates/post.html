@@ -55,10 +55,16 @@
           />
           <div class="activity-container hide">
             <div class="activity-card">
-              <p class="activity"><b>Profile</b></p>
+              <a
+                href="{% url 'profile' request.user.username %}"
+                style="text-decoration: none; color: black"
+                ><p class="activity"><b>Profile</b></p></a
+              >
             </div>
             <div class="activity-card">
-              <a href="{% url 'accountSettings' %}"
+              <a
+                href="{% url 'accountSettings' %}"
+                style="text-decoration: none; color: black"
                 ><p class="activity"><b>Settings</b></p></a
               >
             </div>
@@ -70,13 +76,13 @@
             </div>
           </div>
         </div>
-        <p class="nav-links open">
+        <a href="{% url 'uploadPic' %}" class="nav-links open">
           <img
             src="{% static 'img/icon/add-nofill.png' %}"
             class="nav-icon"
             alt=""
           />
-        </p>
+        </a>
         <a href="{% url 'profile' request.user.username %}" class="nav-links"
           ><img
             src="{{request.user.image.url}}"
@@ -128,12 +134,15 @@
             <span class="likes" style="margin-left: 10px"
               >{{post.comments}} comments</span
             >
+            <span class="likes" style="margin-left: 10px"
+              >{{post.created | timesince}} ago</span
+            >
           </div>
 
           <p class="post-des">{{post.caption}}</p>
 
           <div class="comments-container">
-            {% for comment in post_comments %}
+            {% for comment in post_comments%}
             <div class="comment-card">
               <img src="{{comment.user.image.url}}" class="user-dp" alt="" />
               <div class="comment-body">

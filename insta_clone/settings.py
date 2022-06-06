@@ -88,13 +88,24 @@ WSGI_APPLICATION = 'insta_clone.wsgi.application'
 # }
 
 # Local
+# DATABASES={
+#    'default':{
+#       'ENGINE':'django.db.backends.postgresql_psycopg2',
+#       'NAME':'insta_clone',
+#       'USER':'postgres',
+#       'PASSWORD':'mwas6190',
+#       'HOST':'localhost',
+#       'PORT':'5432',
+#    }
+# }
+
 DATABASES={
    'default':{
       'ENGINE':'django.db.backends.postgresql_psycopg2',
-      'NAME':'insta_clone',
-      'USER':'postgres',
-      'PASSWORD':'mwas6190',
-      'HOST':'localhost',
+      'NAME':'df6o6dp9lnorrv',
+      'USER':'babblajtpnphsd',
+      'PASSWORD':'17d774d70adfa5f52b6b3ff0c7702b61dc8771881a9db7c300444bcd70935d07',
+      'HOST':'ec2-54-147-33-38.compute-1.amazonaws.com',
       'PORT':'5432',
    }
 }
